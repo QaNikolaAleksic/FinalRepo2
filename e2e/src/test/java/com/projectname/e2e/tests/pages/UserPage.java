@@ -76,6 +76,20 @@ public class UserPage extends PageBase {
         }
     }
 
+    private WebElement getUpdateButton() {
+        try {
+            return driver.findElement(CustomBy.xpath("//*[@id=\"main-body\"]/div/div[1]/div[1]/div[1]/div/div[3]/a"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("Could not find update button on User page", e);
+        }
+    }
+
+    public UpdatePage openUpdatePage() {
+        getUpdateButton().click();
+        return new UpdatePage(driver, url, email, password);
+    }
+
     public UserPageDetails getActualUserDetails() {
         UserPageDetails userPageDetails = new UserPageDetails();
 
